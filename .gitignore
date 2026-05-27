@@ -1,0 +1,12 @@
+# File: breathe-esg/.gitignore
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.env
+*.sqlite3
+node_modules/
+dist/
+build/
+.DS_Store
+*.log

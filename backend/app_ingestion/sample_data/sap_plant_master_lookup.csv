@@ -1,0 +1,8 @@
+Werk|Werkname|Buchungskreis|Buchungskreisname|Land|Region|Stadt|Adresse|Branche|Anlagentyp
+PL01|Mumbai Hauptwerk|1000|Acme Technologies India|IN|Maharashtra|Mumbai|Plot 42 MIDC Andheri East Mumbai 400093|Technologie|Buero
+PL02|Pune Fertigungswerk|1000|Acme Technologies India|IN|Maharashtra|Pune|Gat 245 Chakan Industrial Area Pune 410501|Fertigung|Fabrik
+PL03|Delhi NCR Werk|1000|Acme Technologies India|IN|Uttar Pradesh|Noida|Building 7A Sector 62 Noida 201301|Technologie|Buero
+PL04|Bangalore Logistikzentrum|2000|Acme Logistics India|IN|Karnataka|Bengaluru|Survey 14 Electronic City Phase 2 Bengaluru 560100|Logistik|Lager
+PL05|Chennai Kraftwerk|1000|Acme Technologies India|IN|Tamil Nadu|Chennai|Old No 12 Guindy Industrial Estate Chennai 600032|Energie|Kraftwerk
+PL06|Hyderabad Vertriebszentrum|2000|Acme Logistics India|IN|Telangana|Hyderabad|Plot 88 IDA Uppal Hyderabad 500039|Vertrieb|Lager
+PL07|Kolkata Heizwerk|1000|Acme Technologies India|IN|West Bengal|Kolkata|Block EP Sector 5 Salt Lake Kolkata 700091|Technologie|Buero
