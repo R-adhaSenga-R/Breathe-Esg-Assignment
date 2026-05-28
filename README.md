@@ -56,14 +56,15 @@ npm run dev                       # runs on http://localhost:5173
 
 | Page | URL |
 |---|---|
-| **Analyst Dashboard** | http://localhost:5173 |
-| **Upload Data** | http://localhost:5173/upload |
-| **Django Admin Panel** | http://127.0.0.1:8000/admin |
+| **Analyst Dashboard** | https://appealing-cat-production-1790.up.railway.app/dashboard |
+| **Django Admin Panel** | https://breathe-esg-assignment-production-f6e4.up.railway.app/admin/ |
 
 ### Admin Credentials
 ```
-Username : admin
-Password : admin123
+Username 1 : admin
+Password 1 : admin
+Username 2 : radha
+Password 2 : 12345
 ```
 > Set during `createsuperuser`. Change these if deploying publicly.
 
