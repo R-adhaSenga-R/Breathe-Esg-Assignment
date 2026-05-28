@@ -33,4 +33,4 @@ db.sqlite3
 
 # Coverage
 coverage/
-htmlcov/
+htmlcov/frontend/.env.local
