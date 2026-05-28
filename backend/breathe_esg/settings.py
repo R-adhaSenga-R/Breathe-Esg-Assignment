@@ -27,6 +27,11 @@ INSTALLED_APPS = [
     'corsheaders',
     'app_ingestion',
 ]
+CSRF_TRUSTED_ORIGINS = [
+    o.strip() 
+    for o in os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',') 
+    if o.strip()
+]
 
 # ── Middleware ─────────────────────────────────────────────────────────────────
 MIDDLEWARE = [
