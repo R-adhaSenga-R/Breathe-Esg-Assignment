@@ -10,6 +10,14 @@ Thumbs.db
 .env
 .env.*
 
+# Python virtual environments
+venv/
+backend/venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
 # Logs
 *.log
 
@@ -17,13 +25,10 @@ Thumbs.db
 dist/
 build/
 
-# Python cache
-__pycache__/
-
-# Node modules (extra safety)
+# Node modules
 node_modules/
 
-# SQLite DB (if local only)
+# SQLite DB
 db.sqlite3
 
 # Coverage
