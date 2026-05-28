@@ -56,6 +56,7 @@ npm run dev                       # runs on http://localhost:5173
 
 | Page | URL |
 |---|---|
+| **Upload File** | https://appealing-cat-production-1790.up.railway.app |
 | **Analyst Dashboard** | https://appealing-cat-production-1790.up.railway.app/dashboard |
 | **Django Admin Panel** | https://breathe-esg-assignment-production-f6e4.up.railway.app/admin/ |
 
