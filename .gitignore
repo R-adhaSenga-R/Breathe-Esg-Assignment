@@ -1,12 +1,31 @@
-# File: breathe-esg/.gitignore
-__pycache__/
-*.pyc
-*.pyo
-venv/
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Environment files
 .env
-*.sqlite3
-node_modules/
+.env.*
+
+# Logs
+*.log
+
+# Build artifacts
 dist/
 build/
-.DS_Store
-*.log
+
+# Python cache
+__pycache__/
+
+# Node modules (extra safety)
+node_modules/
+
+# SQLite DB (if local only)
+db.sqlite3
+
+# Coverage
+coverage/
+htmlcov/

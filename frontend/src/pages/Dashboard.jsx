@@ -23,15 +23,24 @@ export default function Dashboard() {
 
   const fetchRecords = async () => {
     setLoading(true)
-    const params = new URLSearchParams({ org_id: 1, ...filters })
-    const res = await api.get(`/records/?${params}`)
-    setRecords(res.data.results || [])
-    setLoading(false)
+    try {
+      const params = new URLSearchParams({ org_id: 1, ...filters })
+      const res = await api.get(`/records/?${params}`)
+      setRecords(res.data.results || [])
+    } catch (err) {
+      console.error('Error fetching records:', err)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const fetchSummary = async () => {
-    const res = await api.get('/summary/?org_id=1')
-    setSummary(res.data)
+    try {
+      const res = await api.get('/summary/?org_id=1')
+      setSummary(res.data)
+    } catch (err) {
+      console.error('Error fetching summary:', err)
+    }
   }
 
   useEffect(() => { fetchRecords(); fetchSummary() }, [filters])

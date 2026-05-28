@@ -4,7 +4,7 @@ import tempfile
 from django.utils import timezone
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 
@@ -21,8 +21,9 @@ from .normalizer import normalize_sap_row, normalize_utility_row, normalize_trav
 
 
 def log_action(user, org, action, model_name, target_id, detail=None):
+    db_user = user if user and user.is_authenticated else None
     AuditLog.objects.create(
-        user=user, organization=org, action=action,
+        user=db_user, organization=org, action=action,
         target_model=model_name, target_id=target_id,
         detail=detail or {},
     )
@@ -31,7 +32,7 @@ def log_action(user, org, action, model_name, target_id, detail=None):
 # ── Upload ────────────────────────────────────────────────────────────────────
 
 @api_view(['POST'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def upload_file(request):
     print("=== UPLOAD HIT ===")
     print("User:", request.user, "| Authenticated:", request.user.is_authenticated)
@@ -80,7 +81,7 @@ def upload_file(request):
     # Create batch record
     batch = IngestionBatch.objects.create(
         organization      = org,
-        uploaded_by       = request.user,
+        uploaded_by       = request.user if request.user and request.user.is_authenticated else None,
         source_type       = source_type,
         original_filename = uploaded.name,
         file_hash         = parse_result.file_hash,
@@ -165,7 +166,7 @@ def upload_file(request):
 # ── Batches ───────────────────────────────────────────────────────────────────
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def list_batches(request):
     """GET /api/batches/?org_id=1"""
     org_id = request.query_params.get('org_id')
@@ -179,7 +180,7 @@ def list_batches(request):
 # ── Review dashboard ──────────────────────────────────────────────────────────
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def list_records(request):
     """
     GET /api/records/?org_id=1&scope=scope1&status=pending&batch_id=5
@@ -208,7 +209,7 @@ def list_records(request):
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def review_record(request, record_id):
     """
     POST /api/records/<id>/review/
@@ -227,7 +228,7 @@ def review_record(request, record_id):
 
     review, _ = ReviewRecord.objects.get_or_create(normalized_record=norm)
     review.status      = new_status
-    review.reviewed_by = request.user
+    review.reviewed_by = request.user if request.user and request.user.is_authenticated else None
     review.reviewed_at = timezone.now()
     review.comment     = comment
     review.save()
@@ -239,7 +240,7 @@ def review_record(request, record_id):
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def bulk_review(request):
     """
     POST /api/records/bulk-review/
@@ -256,7 +257,7 @@ def bulk_review(request):
     for norm in NormalizedRecord.objects.filter(id__in=ids):
         review, _ = ReviewRecord.objects.get_or_create(normalized_record=norm)
         review.status      = new_status
-        review.reviewed_by = request.user
+        review.reviewed_by = request.user if request.user and request.user.is_authenticated else None
         review.reviewed_at = timezone.now()
         review.comment     = comment
         review.save()
@@ -268,7 +269,7 @@ def bulk_review(request):
 # ── Summary stats for dashboard ───────────────────────────────────────────────
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def dashboard_summary(request):
     """GET /api/summary/?org_id=1"""
     org_id = request.query_params.get('org_id')
